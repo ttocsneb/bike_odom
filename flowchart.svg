@@ -1,0 +1,990 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                width="1070" height="1940">
+                
+            <g>
+                <rect x="50" y="80"
+            width="167" height="30"
+            style="fill:#a5d6a7; stroke:#444; stroke-width:1" />
+                    
+                <line x1="60" y1="80" x2="60" y2="110"
+                style="fill:#a5d6a7; stroke:#444; stroke-width:1" />
+                <line x1="207" y1="80" x2="207" y2="110"
+                style="fill:#a5d6a7; stroke:#444; stroke-width:1" />
+             
+                <title>function init()</title>
+            <text x="75" y="100"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="75" y="100">function init()</tspan>
+            </text>
+                
+            </g>
+                <g>
+                   <rect x="87" y="128.5"
+            width="154.8" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>block_time = 500</title>
+            <text x="102" y="148.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="148.5">block_time = 500</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="87" y="177"
+            width="178.2" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>average_time = 2000</title>
+            <text x="102" y="197"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="197">average_time = 2000</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="87" y="225.5"
+            width="147" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>num_magnets = 1</title>
+            <text x="102" y="245.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="245.5">num_magnets = 1</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="87" y="274"
+            width="342" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>num_blocks = average_time / block_length</title>
+            <text x="102" y="294"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="294">num_blocks = average_time / block_length</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="87" y="322.5"
+            width="271.79999999999995" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>time_blocks = Array(num_blocks)</title>
+            <text x="102" y="342.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="342.5">time_blocks = Array(num_blocks)</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="87" y="371"
+            width="154.8" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>active_block = 0</title>
+            <text x="102" y="391"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="391">active_block = 0</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="87" y="419.5"
+            width="131.39999999999998" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>diameter = 27</title>
+            <text x="102" y="439.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="439.5">diameter = 27</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="87" y="468"
+            width="256.2" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>circumference = diameter * pi</title>
+            <text x="102" y="488"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="488">circumference = diameter * pi</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="87" y="516.5"
+            width="264" height="30"
+            rx="2" ry="2"
+            style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
+                   <title>set_timer_interval(block_time)</title>
+            <text x="102" y="536.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="536.5">set_timer_interval(block_time)</tspan>
+            </text>
+                   
+                   
+                </g>
+            <g>
+                <rect x="50" y="580"
+            width="198.2" height="30"
+            style="fill:#a5d6a7; stroke:#444; stroke-width:1" />
+                    
+                <line x1="60" y1="580" x2="60" y2="610"
+                style="fill:#a5d6a7; stroke:#444; stroke-width:1" />
+                <line x1="238.2" y1="580" x2="238.2" y2="610"
+                style="fill:#a5d6a7; stroke:#444; stroke-width:1" />
+             
+                <title>function on_timer()</title>
+            <text x="75" y="600"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="75" y="600">function on_timer()</tspan>
+            </text>
+                
+            </g>
+                <g>
+                   <rect x="87" y="628.5"
+            width="318.59999999999997" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>distance += time_blocks[active_block]</title>
+            <text x="102" y="648.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="648.5">distance += time_blocks[active_block]</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="87" y="677"
+            width="326.4" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>odom = sum(time_blocks) / average_time</title>
+            <text x="102" y="697"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="697">odom = sum(time_blocks) / average_time</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="87" y="725.5"
+            width="178.2" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>odom /= num_magnets</title>
+            <text x="102" y="745.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="745.5">odom /= num_magnets</tspan>
+            </text>
+                   
+                   
+                </g><g>
+            <rect x="117" y="789"
+            width="223.79999999999998" height="30"
+            rx="3" ry="3"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
+            <polygon points="87,804 117,774 147,804 117,834"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+            <title>(mode == speedometer)</title>
+            <text x="162" y="809"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="162" y="809">(mode == speedometer)</tspan>
+            </text>
+            
+            <text x="109.2" y="809"
+        font-family="monospace" font-size="13" fill="#222">if</text> <text x="124.8" y="835.95"
+        font-family="monospace" font-size="13" fill="#222">+</text> <text x="344.69999999999993" y="802.05"
+        font-family="monospace" font-size="13" fill="#222">-</text>
+        </g>
+                <g>
+                   <rect x="137" y="844"
+            width="357.59999999999997" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>speed = odom * circumference * rps_to_unit</title>
+            <text x="152" y="864"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="152" y="864">speed = odom * circumference * rps_to_unit</tspan>
+            </text>
+                   
+                   
+                </g><g>
+            <rect x="584.5999999999999" y="859"
+            width="200.4" height="30"
+            rx="3" ry="3"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
+            <polygon points="554.5999999999999,874 584.5999999999999,844 614.5999999999999,874 584.5999999999999,904"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+            <title>(mode == distance)</title>
+            <text x="629.5999999999999" y="879"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="629.5999999999999" y="879">(mode == distance)</tspan>
+            </text>
+            
+            <text x="576.8" y="879"
+        font-family="monospace" font-size="13" fill="#222">if</text> <text x="592.3999999999999" y="905.95"
+        font-family="monospace" font-size="13" fill="#222">+</text> 
+        </g>
+                <g>
+                   <rect x="604.5999999999999" y="914"
+            width="365.4" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>display_distance = distance * circumference</title>
+            <text x="619.5999999999999" y="934"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="619.5999999999999" y="934">display_distance = distance * circumference</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="604.5999999999999" y="962.5"
+            width="271.79999999999995" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>display_distance *= rps_to_unit</title>
+            <text x="619.5999999999999" y="982.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="619.5999999999999" y="982.5">display_distance *= rps_to_unit</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="87" y="1012.5"
+            width="162.6" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>active_block += 1</title>
+            <text x="102" y="1032.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="1032.5">active_block += 1</tspan>
+            </text>
+                   
+                   
+                </g><g>
+            <rect x="117" y="1076"
+            width="270.6" height="30"
+            rx="3" ry="3"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
+            <polygon points="87,1091 117,1061 147,1091 117,1121"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+            <title>(active_block &gt; num_blocks)</title>
+            <text x="162" y="1096"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="162" y="1096">(active_block &gt; num_blocks)</tspan>
+            </text>
+            
+            <text x="109.2" y="1096"
+        font-family="monospace" font-size="13" fill="#222">if</text> <text x="124.8" y="1122.95"
+        font-family="monospace" font-size="13" fill="#222">+</text> 
+        </g>
+                <g>
+                   <rect x="137" y="1131"
+            width="154.8" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>active_block = 0</title>
+            <text x="152" y="1151"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="152" y="1151">active_block = 0</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="87" y="1181"
+            width="256.2" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>time_blocks[active_block] = 0</title>
+            <text x="102" y="1201"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="1201">time_blocks[active_block] = 0</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="87" y="1229.5"
+            width="154.8" height="30"
+            rx="2" ry="2"
+            style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
+                   <title>update_display()</title>
+            <text x="102" y="1249.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="1249.5">update_display()</tspan>
+            </text>
+                   
+                   
+                </g>
+            <g>
+                <rect x="50" y="1293"
+            width="268.4" height="30"
+            style="fill:#a5d6a7; stroke:#444; stroke-width:1" />
+                    
+                <line x1="60" y1="1293" x2="60" y2="1323"
+                style="fill:#a5d6a7; stroke:#444; stroke-width:1" />
+                <line x1="308.4" y1="1293" x2="308.4" y2="1323"
+                style="fill:#a5d6a7; stroke:#444; stroke-width:1" />
+             
+                <title>function on_wheel_rotation()</title>
+            <text x="75" y="1313"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="75" y="1313">function on_wheel_rotation()</tspan>
+            </text>
+                
+            </g>
+                <g>
+                   <rect x="87" y="1341.5"
+            width="178.2" height="30"
+            rx="2" ry="2"
+            style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
+                   <title>wake_up_if_asleep()</title>
+            <text x="102" y="1361.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="1361.5">wake_up_if_asleep()</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="87" y="1390"
+            width="264" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>time_blocks[active_block] += 1</title>
+            <text x="102" y="1410"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="102" y="1410">time_blocks[active_block] += 1</tspan>
+            </text>
+                   
+                   
+                </g>
+            <g>
+                <rect x="50" y="1453.5"
+            width="252.79999999999998" height="30"
+            style="fill:#a5d6a7; stroke:#444; stroke-width:1" />
+                    
+                <line x1="60" y1="1453.5" x2="60" y2="1483.5"
+                style="fill:#a5d6a7; stroke:#444; stroke-width:1" />
+                <line x1="292.79999999999995" y1="1453.5" x2="292.79999999999995" y2="1483.5"
+                style="fill:#a5d6a7; stroke:#444; stroke-width:1" />
+             
+                <title>function on_key_press(key)</title>
+            <text x="75" y="1473.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="75" y="1473.5">function on_key_press(key)</tspan>
+            </text>
+                
+            </g><g>
+            <rect x="117" y="1517"
+            width="161.39999999999998" height="30"
+            rx="3" ry="3"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
+            <polygon points="87,1532 117,1502 147,1532 117,1562"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+            <title>(key == mode)</title>
+            <text x="162" y="1537"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="162" y="1537">(key == mode)</tspan>
+            </text>
+            
+            <text x="109.2" y="1537"
+        font-family="monospace" font-size="13" fill="#222">if</text> <text x="124.8" y="1563.95"
+        font-family="monospace" font-size="13" fill="#222">+</text> <text x="282.29999999999995" y="1530.05"
+        font-family="monospace" font-size="13" fill="#222">-</text>
+        </g><g>
+            <rect x="167" y="1587"
+            width="161.39999999999998" height="30"
+            rx="3" ry="3"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
+            <polygon points="137,1602 167,1572 197,1602 167,1632"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+            <title>switch (mode)</title>
+            <text x="212" y="1607"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="212" y="1607">switch (mode)</tspan>
+            </text>
+            
+            <text x="159.2" y="1607"
+        font-family="monospace" font-size="13" fill="#222">if</text> <text x="174.8" y="1633.95"
+        font-family="monospace" font-size="13" fill="#222">+</text> 
+        </g>
+                <g>
+                   <rect x="187" y="1642"
+            width="108" height="30"
+            rx="2" ry="2"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+                   <title>case odom:</title>
+            <text x="202" y="1662"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="202" y="1662">case odom:</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="224" y="1690.5"
+            width="123.6" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>mode = speed</title>
+            <text x="239" y="1710.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="239" y="1710.5">mode = speed</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="187" y="1739"
+            width="115.8" height="30"
+            rx="2" ry="2"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+                   <title>case speed:</title>
+            <text x="202" y="1759"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="202" y="1759">case speed:</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="224" y="1787.5"
+            width="147" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>mode = distance</title>
+            <text x="239" y="1807.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="239" y="1807.5">mode = distance</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="187" y="1836"
+            width="139.2" height="30"
+            rx="2" ry="2"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+                   <title>case distance:</title>
+            <text x="202" y="1856"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="202" y="1856">case distance:</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="224" y="1884.5"
+            width="115.8" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>mode = odom</title>
+            <text x="239" y="1904.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="239" y="1904.5">mode = odom</tspan>
+            </text>
+                   
+                   
+                </g><g>
+            <rect x="461" y="1587"
+            width="161.39999999999998" height="30"
+            rx="3" ry="3"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
+            <polygon points="431,1602 461,1572 491,1602 461,1632"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+            <title>(key == unit)</title>
+            <text x="506" y="1607"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="506" y="1607">(key == unit)</tspan>
+            </text>
+            
+            <text x="453.2" y="1607"
+        font-family="monospace" font-size="13" fill="#222">if</text> <text x="468.8" y="1633.95"
+        font-family="monospace" font-size="13" fill="#222">+</text> <text x="626.3" y="1600.05"
+        font-family="monospace" font-size="13" fill="#222">-</text>
+        </g><g>
+            <rect x="511" y="1657"
+            width="161.39999999999998" height="30"
+            rx="3" ry="3"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
+            <polygon points="481,1672 511,1642 541,1672 511,1702"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+            <title>switch (unit)</title>
+            <text x="556" y="1677"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="556" y="1677">switch (unit)</tspan>
+            </text>
+            
+            <text x="503.2" y="1677"
+        font-family="monospace" font-size="13" fill="#222">if</text> <text x="518.8" y="1703.95"
+        font-family="monospace" font-size="13" fill="#222">+</text> 
+        </g>
+                <g>
+                   <rect x="531" y="1712"
+            width="123.6" height="30"
+            rx="2" ry="2"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+                   <title>case metric:</title>
+            <text x="546" y="1732"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="546" y="1732">case metric:</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="568" y="1760.5"
+            width="147" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>unit = imperial</title>
+            <text x="583" y="1780.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="583" y="1780.5">unit = imperial</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="531" y="1809"
+            width="139.2" height="30"
+            rx="2" ry="2"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+                   <title>case imperial:</title>
+            <text x="546" y="1829"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="546" y="1829">case imperial:</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="568" y="1857.5"
+            width="131.39999999999998" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>unit = metric</title>
+            <text x="583" y="1877.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="583" y="1877.5">unit = metric</tspan>
+            </text>
+                   
+                   
+                </g><g>
+            <rect x="805" y="1657"
+            width="239.39999999999998" height="30"
+            rx="3" ry="3"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
+            <polygon points="775,1672 805,1642 835,1672 805,1702"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+            <title>(key == reset_distance)</title>
+            <text x="850" y="1677"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="850" y="1677">(key == reset_distance)</tspan>
+            </text>
+            
+            <text x="797.2" y="1677"
+        font-family="monospace" font-size="13" fill="#222">if</text> <text x="812.8" y="1703.95"
+        font-family="monospace" font-size="13" fill="#222">+</text> 
+        </g>
+                <g>
+                   <rect x="825" y="1712"
+            width="123.6" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>distance = 0</title>
+            <text x="840" y="1732"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="840" y="1732">distance = 0</tspan>
+            </text>
+                   
+                   
+                </g>
+            <g>
+               <rect x="25" y="13.75"
+            width="216.6" height="24"
+            style="fill:#fff59d; stroke:#444; stroke-width:1" />
+               <circle cx="25" cy="25" r="15"
+        style="fill:#fff59d; stroke:#444; stroke-width:1" />
+               <title>Program: source module</title>
+            <text x="55" y="30"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="55" y="30">Program: source module</tspan>
+            </text>
+            </g>
+            <g>
+               <path d="M25, 40 L25 91 Q25 95
+                29 95
+                L42 95 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M42, 92 L50, 95 L42, 98 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 110 L68.5 139.5 Q68.5 143.5
+                72.5 143.5
+                L79 143.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 140.5 L87, 143.5 L79, 146.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 110 L68.5 188 Q68.5 192
+                72.5 192
+                L79 192 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 189 L87, 192 L79, 195 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 110 L68.5 236.5 Q68.5 240.5
+                72.5 240.5
+                L79 240.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 237.5 L87, 240.5 L79, 243.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 110 L68.5 285 Q68.5 289
+                72.5 289
+                L79 289 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 286 L87, 289 L79, 292 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 110 L68.5 333.5 Q68.5 337.5
+                72.5 337.5
+                L79 337.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 334.5 L87, 337.5 L79, 340.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 110 L68.5 382 Q68.5 386
+                72.5 386
+                L79 386 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 383 L87, 386 L79, 389 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 110 L68.5 430.5 Q68.5 434.5
+                72.5 434.5
+                L79 434.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 431.5 L87, 434.5 L79, 437.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 110 L68.5 479 Q68.5 483
+                72.5 483
+                L79 483 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 480 L87, 483 L79, 486 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 110 L68.5 527.5 Q68.5 531.5
+                72.5 531.5
+                L79 531.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 528.5 L87, 531.5 L79, 534.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M25, 40 L25 591 Q25 595
+                29 595
+                L42 595 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M42, 592 L50, 595 L42, 598 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 610 L68.5 639.5 Q68.5 643.5
+                72.5 643.5
+                L79 643.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 640.5 L87, 643.5 L79, 646.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 610 L68.5 688 Q68.5 692
+                72.5 692
+                L79 692 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 689 L87, 692 L79, 695 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 610 L68.5 736.5 Q68.5 740.5
+                72.5 740.5
+                L79 740.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 737.5 L87, 740.5 L79, 743.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 610 L68.5 800 Q68.5 804
+                72.5 804
+                L79 804 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 801 L87, 804 L79, 807 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M117, 834 L117 855 Q117 859
+                121 859
+                L129 859 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M129, 856 L137, 859 L129, 862 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M340.79999999999995, 804 L530.5999999999999 804  Q534.5999999999999 804
+                534.5999999999999 808
+                L534.5999999999999 866 Q534.5999999999999 874
+                538.5999999999999 874
+                L546.5999999999999 874 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M546.5999999999999, 871 L554.5999999999999, 874 L546.5999999999999, 877 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M584.5999999999999, 904 L584.5999999999999 925 Q584.5999999999999 929
+                588.5999999999999 929
+                L596.5999999999999 929 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M596.5999999999999, 926 L604.5999999999999, 929 L596.5999999999999, 932 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M584.5999999999999, 904 L584.5999999999999 973.5 Q584.5999999999999 977.5
+                588.5999999999999 977.5
+                L596.5999999999999 977.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M596.5999999999999, 974.5 L604.5999999999999, 977.5 L596.5999999999999, 980.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 610 L68.5 1023.5 Q68.5 1027.5
+                72.5 1027.5
+                L79 1027.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 1024.5 L87, 1027.5 L79, 1030.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 610 L68.5 1087 Q68.5 1091
+                72.5 1091
+                L79 1091 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 1088 L87, 1091 L79, 1094 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M117, 1121 L117 1142 Q117 1146
+                121 1146
+                L129 1146 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M129, 1143 L137, 1146 L129, 1149 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 610 L68.5 1192 Q68.5 1196
+                72.5 1196
+                L79 1196 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 1193 L87, 1196 L79, 1199 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 610 L68.5 1240.5 Q68.5 1244.5
+                72.5 1244.5
+                L79 1244.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 1241.5 L87, 1244.5 L79, 1247.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M25, 40 L25 1304 Q25 1308
+                29 1308
+                L42 1308 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M42, 1305 L50, 1308 L42, 1311 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 1323 L68.5 1352.5 Q68.5 1356.5
+                72.5 1356.5
+                L79 1356.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 1353.5 L87, 1356.5 L79, 1359.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 1323 L68.5 1401 Q68.5 1405
+                72.5 1405
+                L79 1405 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 1402 L87, 1405 L79, 1408 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M25, 40 L25 1464.5 Q25 1468.5
+                29 1468.5
+                L42 1468.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M42, 1465.5 L50, 1468.5 L42, 1471.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 1483.5 L68.5 1528 Q68.5 1532
+                72.5 1532
+                L79 1532 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M79, 1529 L87, 1532 L79, 1535 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M117, 1562 L117 1598 Q117 1602
+                121 1602
+                L129 1602 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M129, 1599 L137, 1602 L129, 1605 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M167, 1632 L167 1653 Q167 1657
+                171 1657
+                L179 1657 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M179, 1654 L187, 1657 L179, 1660 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M205.5, 1672 L205.5 1701.5 Q205.5 1705.5
+                209.5 1705.5
+                L216 1705.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M216, 1702.5 L224, 1705.5 L216, 1708.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M167, 1632 L167 1750 Q167 1754
+                171 1754
+                L179 1754 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M179, 1751 L187, 1754 L179, 1757 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M205.5, 1769 L205.5 1798.5 Q205.5 1802.5
+                209.5 1802.5
+                L216 1802.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M216, 1799.5 L224, 1802.5 L216, 1805.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M167, 1632 L167 1847 Q167 1851
+                171 1851
+                L179 1851 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M179, 1848 L187, 1851 L179, 1854 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M205.5, 1866 L205.5 1895.5 Q205.5 1899.5
+                209.5 1899.5
+                L216 1899.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M216, 1896.5 L224, 1899.5 L216, 1902.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M278.4, 1532 L407 1532  Q411 1532
+                411 1536
+                L411 1594 Q411 1602
+                415 1602
+                L423 1602 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M423, 1599 L431, 1602 L423, 1605 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M461, 1632 L461 1668 Q461 1672
+                465 1672
+                L473 1672 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M473, 1669 L481, 1672 L473, 1675 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M511, 1702 L511 1723 Q511 1727
+                515 1727
+                L523 1727 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M523, 1724 L531, 1727 L523, 1730 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M549.5, 1742 L549.5 1771.5 Q549.5 1775.5
+                553.5 1775.5
+                L560 1775.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M560, 1772.5 L568, 1775.5 L560, 1778.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M511, 1702 L511 1820 Q511 1824
+                515 1824
+                L523 1824 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M523, 1821 L531, 1824 L523, 1827 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M549.5, 1839 L549.5 1868.5 Q549.5 1872.5
+                553.5 1872.5
+                L560 1872.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M560, 1869.5 L568, 1872.5 L560, 1875.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M622.4, 1602 L751 1602  Q755 1602
+                755 1606
+                L755 1664 Q755 1672
+                759 1672
+                L767 1672 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M767, 1669 L775, 1672 L767, 1675 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M805, 1702 L805 1723 Q805 1727
+                809 1727
+                L817 1727 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M817, 1724 L825, 1727 L817, 1730 Z" 
+        fill="#333" />
+            </g>
+            </svg>
