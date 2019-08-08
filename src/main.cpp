@@ -1,5 +1,7 @@
 #include <Arduino.h>
 #include "rom.hpp"
+#include "config.hpp"
+#include "hardware.hpp"
 
 void setup() {
   // put your setup code here, to run once:

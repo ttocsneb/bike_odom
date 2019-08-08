@@ -23,12 +23,12 @@ uint32_t read(uint16_t address) {
 
 uint8_t rom::read_byte(uint16_t address) {
     address *= 4;
-    return read(address);
+    return read(address + 3);
 }
 
 uint16_t rom::read_int(int16_t address) {
     address *= 4;
-    return (read(address) << 8) | read(address + 1);
+    return (read(address + 2) << 8) | read(address + 3);
 }
 
 uint32_t rom::read_long(uint16_t address) {
