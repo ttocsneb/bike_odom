@@ -12,6 +12,8 @@ function init() {
     diameter = 27;
     circumference = diameter * pi;
 
+    sleep_time = 5 * 60;
+
     set_timer_interval(block_time);
 }
 
@@ -33,6 +35,8 @@ function on_timer() {
     time_blocks[active_block] = 0;
 
     update_display();
+
+    sleep_if_not_moved(sleep_time);
 }
 
 function on_wheel_rotation() {
@@ -41,6 +45,7 @@ function on_wheel_rotation() {
 }
 
 function on_key_press(key) {
+    wake_up_if_asleep();
     if (key == mode) {
         switch(mode) {
         case odom: mode = speed;
