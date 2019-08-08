@@ -26,7 +26,7 @@ namespace rom {
     void write(uint16_t address, uint32_t val);
     void write_bits(uint8_t bit, uint8_t val);
 
-    enum Mode {ODOM, SPEED, DISTANCE};
+    enum Mode {TACHO, SPEED, ODOM};
     enum Unit {METRIC, IMPERIAL};
 }
 

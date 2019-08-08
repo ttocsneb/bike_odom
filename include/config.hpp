@@ -18,23 +18,23 @@ const uint8_t ResetButtonPin = 8;
 
 /**
  * Button Functions:
- * use a function pointer to override the default logic for each button
+ * use a function to override the default logic for each button
  * 
  * @return bool whether the button is pressed
  * 
  * function decleration example:
  * ```
  * bool modeButton() {}
- * #define MODE_BUTTON_FUNCTION &modeButton
+ * #define MODE_BUTTON_FUNCTION modeButton
  * ```
  * 
  * The logic for each button is performed when the state changes from
  * false -> true, and doesn't repeat until 
  */
-// #define MODE_BUTTON_FUNCTION // function pointer
-// #define UNIT_BUTTON_FUNCTION // function pointer
-// #define RESET_BUTTON_FUNCTION // function pointer
-// #define WHEEL_DETECTOR_FUNCTION // function pointer
+// #define MODE_BUTTON_FUNCTION // function
+// #define UNIT_BUTTON_FUNCTION // function
+// #define RESET_BUTTON_FUNCTION // function
+// #define WHEEL_DETECTOR_FUNCTION // function
 
 /**
  * Update Display
@@ -58,10 +58,10 @@ const uint8_t ResetButtonPin = 8;
  * function declaration example:
  * ```
  * void updateDisplay(unsigned int value, rom::Mode mode, rom::Unit unit)
- * #define UPDATE_DISPLAY_FUNCTION &updateDisplay
+ * #define UPDATE_DISPLAY_FUNCTION updateDisplay
  * ```
  */
-#define UPDATE_DISPLAY_FUNCTION // function pointer
+#define UPDATE_DISPLAY_FUNCTION // function
 
 /**
  * Before sleep and After wake
@@ -73,12 +73,12 @@ const uint8_t ResetButtonPin = 8;
  * ```
  * void beforeSleep() {}
  * void afterWake() {}
- * #define BEFORE_SLEEP &beforeSleep
- * #define AFTER_WAKE &afterWake
+ * #define BEFORE_SLEEP beforeSleep
+ * #define AFTER_WAKE afterWake
  * ```
  */
-// #define BEFORE_SLEEP // function pointer
-// #define AFTER_WAKE // function pointer
+// #define BEFORE_SLEEP // function
+// #define AFTER_WAKE // function
 
 // Debug macros
 #ifdef DEBUG
