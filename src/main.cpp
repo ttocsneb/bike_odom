@@ -1,19 +1,22 @@
 #include <Arduino.h>
+#include "main.hpp"
 #include "rom.hpp"
 #include "config.hpp"
 #include "hardware.hpp"
 
 uint32_t distance;
+uint16_t block_time;
 uint16_t average_time;
 
 uint8_t num_blocks;
-uint8_t* time_blocks = NULL;
+volatile uint8_t* time_blocks = NULL;
+volatile uint8_t active_block;
+volatile uint32_t sleep_timer = 0;
 
 uint8_t num_magnets;
 float wheel_conversion;
 
 uint32_t sleep_time;
-uint8_t active_block;
 
 rom::Mode mode;
 rom::Unit unit;
@@ -25,9 +28,10 @@ void setup() {
   distance = rom::read_long(rom::Distance);
   average_time = rom::read_int(rom::Average_Time);
   num_magnets = rom::read_byte(rom::Num_Magnets);
+  block_time = rom::read_int(rom::Block_Time);
 
   // Load the time blocks array
-  num_blocks = average_time / rom::read_int(rom::Block_Time);
+  num_blocks = average_time / block_time;
   if (time_blocks != NULL) {
     delete[] time_blocks;
   }
@@ -44,11 +48,11 @@ void setup() {
 
   mode = rom::Mode(rom::read_bits(rom::Bit_Mode));
   unit = rom::Unit(rom::read_bits(rom::Bit_Unit));
+
+  hardware::setup();
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
+void loop() {}
 
 uint16_t sum_blocks() {
   uint16_t total = 0;
@@ -85,4 +89,10 @@ void timer() {
   time_blocks[active_block] = 0;
 
   UPDATE_DISPLAY_FUNCTION(static_cast<unsigned int>(display * 10), mode, unit);
+
+  sleep_timer += block_time;
+  if (sleep_timer > sleep_time) {
+    hardware::sleep();
+  }
+
 }

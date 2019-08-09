@@ -7,18 +7,35 @@
 // uncomment to enable debug output through serial
 // #define DEBUG
 
-const uint8_t WheelSensorPin = 5;
-const uint8_t ModeButtonPin = 6;
-const uint8_t UnitButtonPin = 7;
-const uint8_t ResetButtonPin = 8;
+// The wheel sensor pin is required to be on an INT pin.  on atmega328p: the INT pins are on 2 and 3
+const uint8_t WheelSensorPin = 2;
+
+// These constants are used by the default implementations and used for interrupts
+// They should be connected to PCINT pins.
+// Comment out a button pin if it is not used
+#define MODE_BUTTON_PIN 8
+#define UNIT_BUTTON_PIN 9
+#define RESET_BUTTON_PIN 10
+
+// Pin Setup.  This is how the pins will be setup, again if you are seting up the pins
+// yourself, or a pin is not in use, comment out the definition
+#define MODE_BUTTON_PIN_SETUP pinMode(MODE_BUTTON_PIN, INPUT_PULLUP)
+#define UNIT_BUTTON_PIN_SETUP pinMode(UNIT_BUTTON_PIN, INPUT_PULLUP)
+#define RESET_BUTTON_PIN_SETUP pinMode(RESET_BUTTON_PIN, INPUT_PULLUP)
+
+// When an interrupt is triggered.
+#define MODE_BUTTON_MODE FALLING
+#define UNIT_BUTTON_MODE FALLING
+#define RESET_BUTTON_MODE FALLING
 
 // Custom Functions
 // Note: to use a function, you will need to include the header file that
 // declares the function
 
 /**
- * Button Functions:
+ * Button Functions (optional)
  * use a function to override the default logic for each button
+ * It is called when a pin (not necessarily this pin) changes state
  * 
  * @return bool whether the button is pressed
  * 
@@ -37,7 +54,7 @@ const uint8_t ResetButtonPin = 8;
 // #define WHEEL_DETECTOR_FUNCTION // function
 
 /**
- * Update Display
+ * Update Display (required)
  * 
  * updates the display.
  * 
@@ -64,7 +81,7 @@ const uint8_t ResetButtonPin = 8;
 #define UPDATE_DISPLAY_FUNCTION // function
 
 /**
- * Before sleep and After wake
+ * Before sleep and After wake (optional)
  * 
  * Called just (before sleep / after wake).  This can be used to put other
  * devices to sleep/wake to save power
@@ -80,7 +97,9 @@ const uint8_t ResetButtonPin = 8;
 // #define BEFORE_SLEEP // function
 // #define AFTER_WAKE // function
 
+
 // Debug macros
+// you can use these macros, or add your own for debugging
 #ifdef DEBUG
   #define PRINT(...) Serial.print(__VA_ARGS__)
   #define PRINTLN(...) Serial.println(__VA_ARGS__)

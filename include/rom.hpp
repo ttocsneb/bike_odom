@@ -13,6 +13,7 @@ namespace rom {
     extern const uint8_t Diameter;
     extern const uint8_t Sleep_Time;
     extern const uint8_t Distance;
+    extern const uint8_t DistanceUpdateTime;
 
     extern const uint8_t Bit_Mode;
     extern const uint8_t Bit_Unit;
