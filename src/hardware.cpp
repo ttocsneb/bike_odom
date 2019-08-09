@@ -1,5 +1,5 @@
 #include "hardware.hpp"
-#include "main.hpp"
+#include "odom.hpp"
 #include <Arduino.h>
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
@@ -17,8 +17,8 @@ void onResetPress() {
 
 void onWheelRotate() {
     if(WHEEL_DETECTOR_FUNCTION()) {
-        time_blocks[active_block]++;
-        sleep_timer = 0;
+        odom::time_blocks[odom::active_block]++;
+        odom::sleep_timer = 0;
     }
 }
 
