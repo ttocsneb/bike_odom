@@ -3,6 +3,7 @@
 #include "rom.hpp"
 #include "config.hpp"
 #include "hardware.hpp"
+#include "serial.hpp"
 
 uint32_t distance;
 uint16_t block_time;
@@ -73,6 +74,8 @@ void odom::setup() {
     mode = rom::Mode(rom::read_bits(rom::Bit_Mode));
     unit = rom::Unit(rom::read_bits(rom::Bit_Unit));
 
+    serial::setup();
+
     hardware::setup();
     setupTimer();
     interrupts();
@@ -98,6 +101,8 @@ ISR(TIMER2_COMPA_vect) {
         return;
     }
     counter = 0;
+
+    serial::update();
 
     // Process the time block
     distance += odom::time_blocks[odom::active_block];
