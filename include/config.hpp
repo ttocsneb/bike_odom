@@ -2,6 +2,7 @@
 #define __CONFIG__
 
 // Import all used headers here
+#include "led/display.hpp"
 
 #include <stdint.h>
 // uncomment to enable debug output through serial
@@ -78,7 +79,7 @@ const uint8_t WheelSensorPin = 2;
  * #define UPDATE_DISPLAY_FUNCTION updateDisplay
  * ```
  */
-#define UPDATE_DISPLAY_FUNCTION // function
+#define UPDATE_DISPLAY_FUNCTION display::display
 
 /**
  * Before sleep and After wake (optional)
