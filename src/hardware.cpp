@@ -6,13 +6,19 @@
 #include <PinChangeInterrupt.h>
 
 void onModePress() {
-    bool pressed = MODE_BUTTON_FUNCTION();
+    if (MODE_BUTTON_FUNCTION()) {
+      odom::nextMode();
+    }
 }
 void onUnitPress() {
-    bool pressed = UNIT_BUTTON_FUNCTION();
+    if (UNIT_BUTTON_FUNCTION()) {
+      odom::nextUnit();
+    }
 }
 void onResetPress() {
-    bool pressed = RESET_BUTTON_FUNCTION();
+    if (RESET_BUTTON_FUNCTION()) {
+      odom::resetOdom();
+    }
 }
 
 void onWheelRotate() {
