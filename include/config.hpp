@@ -59,23 +59,19 @@ const uint8_t WheelSensorPin = 2;
  * 
  * updates the display.
  * 
- * the format of the value will be a number with 1 decimal place.
- * Because the value is an integer, the value is increased by a factor
- * of 10 ie. 15.2 -> 152
- * 
  * there are 3 modes that the display can be in:
  * tachometer (rpm), speedometer (km/h / mph), odometer (km/mi)
  * 
  * There are 2 unit modes: metric, imperial.  The tachometer uses rpm
  * for both.
  * 
- * @param value unsigned int
+ * @param value float
  * @param mode rom::Mode
  * @param unit rom::Unit
  * 
  * function declaration example:
  * ```
- * void updateDisplay(unsigned int value, rom::Mode mode, rom::Unit unit)
+ * void updateDisplay(float value, rom::Mode mode, rom::Unit unit)
  * #define UPDATE_DISPLAY_FUNCTION updateDisplay
  * ```
  */
@@ -95,7 +91,7 @@ const uint8_t WheelSensorPin = 2;
  * #define AFTER_WAKE afterWake
  * ```
  */
-// #define BEFORE_SLEEP // function
+#define BEFORE_SLEEP display::onSleep
 // #define AFTER_WAKE // function
 
 

@@ -5,6 +5,13 @@
 #include "hardware.hpp"
 #include "serial.hpp"
 
+// Calculate the scale and number of steps for the block timer based on the clock speed
+#define F_CPU_M F_CPU / 1000
+#define MAX 65535
+#define TIMER_SCALE 4
+#define timer_to_scale(x) (x == 1 ? 1 : (x == 2 ? 8 : (x == 3 ? 64 : (x == 4 ? 256 : (x == 5 ? 1024 : 0)))))
+#define TIMER_STEP_MS (F_CPU_M / timer_to_scale(TIMER_SCALE))
+
 uint32_t distance;
 uint16_t block_time;
 uint16_t average_time;
@@ -28,24 +35,23 @@ const float kilometer = 1000;
 void timer();
 
 void setupTimer() {
-    // Setup timer 2 for the block timer
+    // Setup timer 1 for the block timer
 
     // Clear the current settings
-    TCCR2A = 0;
-    TCCR2B = 0;
-    TCNT2 = 0;
+    TCCR1A = 0;
+    TCCR1B = 0;
+    TCNT1 = 0;
 
     // Set the timer scale
-    TCCR2B |= TIMER_SCALE;
+    TCCR1B |= TIMER_SCALE;
 
-    // Set the timer mode to mode 4: CTC (OCR2)
-    TCCR2B |= (1 << WGM12);
+    // Set the timer mode to mode 4: CTC (OCR1)
+    TCCR1B |= (1 << WGM12);
 
-    // Set the length of the timer (1 ms)
-    OCR2A = TIMER_STOP;
+    // Set the length of the timer (1 ms * block_time)
+    OCR1A = TIMER_STEP_MS * block_time;
 
-    TIMSK2 |= (1 << OCIE2A);
-
+    TIMSK1 |= (1 << OCIE2A);
 }
 
 void odom::setup() {
@@ -94,14 +100,6 @@ float getUnitConversion() {
 }
 
 ISR(TIMER2_COMPA_vect) {
-    // Dont process the time block until the time has passed
-    static uint16_t counter(0);
-    counter++;
-    if (counter < block_time) {
-        return;
-    }
-    counter = 0;
-
     serial::update();
 
     // Process the time block
@@ -126,7 +124,7 @@ ISR(TIMER2_COMPA_vect) {
     }
     odom::time_blocks[odom::active_block] = 0;
 
-    UPDATE_DISPLAY_FUNCTION(static_cast<unsigned int>(display * 10), mode, unit);
+    UPDATE_DISPLAY_FUNCTION(display, mode, unit);
 
     odom::sleep_timer += block_time;
     if (odom::sleep_timer > sleep_time) {

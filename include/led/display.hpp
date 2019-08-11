@@ -6,7 +6,8 @@
 namespace display {
     void setup();
     void update();
-    void display(unsigned int value, rom::Mode mode, rom::Unit unit);
+    void display(float value, rom::Mode mode, rom::Unit unit);
+    void onSleep();
 }
 
 #endif

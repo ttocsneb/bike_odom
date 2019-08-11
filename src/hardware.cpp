@@ -50,6 +50,7 @@ void wake() {
     sleep_disable();
     detachInterrupt(digitalPinToInterrupt(WheelSensorPin));
     attachInterrupt(digitalPinToInterrupt(WheelSensorPin), onWheelRotate, FALLING);
+    odom::setup();
     PRINTLN("Just Woke up");
     #ifdef AFTER_WAKE
       AFTER_WAKE();

@@ -2,6 +2,7 @@
 
 #include "config.hpp"
 #include "rom.hpp"
+#include "odom.hpp"
 
 #include <Arduino.h>
 
@@ -21,7 +22,8 @@ enum Rom {
 enum Command {
     WRITE = 'w',
     READ = 'r',
-    RESET = 'p'
+    RESET = 't',
+    SETUP = 'p'
 };
 
 void serial::setup() {
@@ -30,13 +32,17 @@ void serial::setup() {
     PRINTLN("Hello World!");
 }
 
+void status(char status) {
+    Serial.write(status);
+    Serial.println();
+}
+
 
 void serial::update() {
     while (Serial.available() > 0) {
         String data = Serial.readStringUntil('\n');
-        if (String("wrp").indexOf(data[0]) == -1) {
-            Serial.write(BAD);
-            Serial.println();
+        if (String("wrpt").indexOf(data[0]) == -1) {
+            status(BAD);
             continue;
         }
         Command c = static_cast<Command>(data[0]);
@@ -44,8 +50,7 @@ void serial::update() {
         if (c == WRITE || c == READ) {
 
             if (String("bamdsDu").indexOf(data[1]) == -1) {
-                Serial.write(BAD);
-                Serial.println();
+                status(BAD);
                 continue;
             }
             Rom r = static_cast<Rom>(data[1]);
@@ -78,22 +83,21 @@ void serial::update() {
             if (c == WRITE) {
                 long value = data.substring(2).toInt();
                 if (value == 0) {
-                    Serial.write(BAD);
-                    Serial.println();
+                    status(BAD);
                     continue;
                 }
                 rom::write(address, value);
-                Serial.write(OK);
-                Serial.println();
+                status(OK);
             } else {
                 long value = rom::read_long(address);
                 Serial.print(value);
-                Serial.write(OK);
-                Serial.println();
+                status(OK);
             }
-        } else {
-            Serial.write(BAD);
-            Serial.println();
+        } else if (c == SETUP) {
+            odom::setup();
+            status(OK);
+        }else {
+            status(BAD);
         }
     }
 }

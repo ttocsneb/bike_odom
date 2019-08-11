@@ -3,6 +3,9 @@
 #include <stdint.h>
 #include <Arduino.h>
 
+#define ON HIGH
+#define OFF LOW
+
 const uint8_t A = 4;
 const uint8_t B = 5;
 const uint8_t C = 6;
@@ -41,7 +44,7 @@ void display::setup() {
 
 void display::update() {
     static uint8_t active_digit(0);
-    digitalWrite(Dig[active_digit], LOW);
+    digitalWrite(Dig[active_digit], OFF);
     digitalWrite(Latch, HIGH);
 
     active_digit++;
@@ -52,7 +55,7 @@ void display::update() {
     BCD(digits[active_digit], dots[active_digit]);
 
     digitalWrite(Latch, LOW);
-    digitalWrite(Dig[active_digit], HIGH);
+    digitalWrite(Dig[active_digit], ON);
 
 }
 
@@ -79,7 +82,7 @@ void setText(String text) {
     }
 }
 
-void display::display(unsigned int value, rom::Mode mode, rom::Unit unit) {
+void display::display(float value, rom::Mode mode, rom::Unit unit) {
     double number = value / 10.0;
     char display[8];
     sprintf(display, "%4.1f", number);
@@ -89,4 +92,11 @@ void display::display(unsigned int value, rom::Mode mode, rom::Unit unit) {
     PRINTLN("'");
 
     setText(display);
+}
+
+void display::onSleep() {
+    digitalWrite(Dig[0], OFF);
+    digitalWrite(Dig[1], OFF);
+    digitalWrite(Dig[2], OFF);
+    digitalWrite(Dig[3], OFF);
 }
