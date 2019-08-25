@@ -134,7 +134,7 @@ float getUnitConversion() {
     return unit == rom::METRIC ? kilometer : mile;
 }
 
-ISR(TIMER2_COMPA_vect) {
+ISR(TIMER1_COMPA_vect) {
     static uint32_t distance_timer(0);
     distance_timer += block_time;
     if (distance_timer >= distance_update_time) {

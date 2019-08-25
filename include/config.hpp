@@ -7,6 +7,9 @@
 #include <stdint.h>
 // uncomment to enable debug output through serial
 // #define DEBUG
+#define TEST
+// #define TEST_DISPLAY
+#define TEST_TEXT
 
 // The wheel sensor pin is required to be on an INT pin.  on atmega328p: the INT pins are on 2 and 3
 const uint8_t WheelSensorPin = 2;

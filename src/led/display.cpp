@@ -6,25 +6,32 @@
 #define ON HIGH
 #define OFF LOW
 
-const uint8_t A = 4;
-const uint8_t B = 5;
-const uint8_t C = 6;
-const uint8_t D = 7;
-const uint8_t DP = A4;
+#define MAX 255
+#define TIMER_SCALE 4
+#define timer_to_scale(x) (x == 1 ? 1 : (x == 2 ? 8 : (x == 3 ? 32 : (x == 4 ? 64 : (x == 5 ? 128 : (x == 6 ? 256 : (x == 7 ? 1024 : 0)))))))
+#define UPDATE_TIME (200*4) // Hz
+const uint8_t Timer_Steps = (F_CPU / timer_to_scale(TIMER_SCALE)) / UPDATE_TIME;
 
-const uint8_t Dig[4] = {A0, A1, A2, A3};
 
-const uint8_t Latch = A5;
+const uint8_t A = pA;
+const uint8_t B = pB;
+const uint8_t C = pC;
+const uint8_t D = pD;
+const uint8_t DP = pDP;
+
+const uint8_t Dig[4] = {pD0, pD1, pD2, pD3};
+
+const uint8_t Latch = pLATCH;
 
 uint8_t digits[4];
 bool dots[4];
 
 void BCD(uint8_t val, bool dp) {
-    digitalWrite(A, (val & 0b0001) != 0);
-    digitalWrite(B, (val & 0b0010) != 0);
-    digitalWrite(C, (val & 0b0100) != 0);
-    digitalWrite(D, (val & 0b1000) != 0);
-    digitalWrite(DP, dp);
+    digitalWrite(A, val & 1);
+    digitalWrite(B, (val & 2) != 0);
+    digitalWrite(C, (val & 4) != 0);
+    digitalWrite(D, (val & 8) != 0);
+    digitalWrite(DP, !dp);
 }
 
 void display::setup() {
@@ -40,26 +47,45 @@ void display::setup() {
     pinMode(Dig[3], OUTPUT);
 
     pinMode(Latch, OUTPUT);
-}
-
-void display::update() {
-    static uint8_t active_digit(0);
-    digitalWrite(Dig[active_digit], OFF);
     digitalWrite(Latch, HIGH);
 
+    // Setup the timer
+    // Clear the timer registers
+    TCCR2A = 0;
+    TCCR2B = 0;
+    TCNT2 = 0;
+    // Set the length of the timer
+    OCR2A = Timer_Steps;
+
+    // Set the Mode to CTC (Clear Timer on Compare match)
+    TCCR2A |= 1 << WGM21;
+
+    // Set the Timer scale
+    TCCR2B |= TIMER_SCALE;
+
+    // Enable Timer2 to compare to OCR2A
+    TIMSK2 = 1 << OCIE2A;
+
+}
+
+ISR(TIMER2_COMPA_vect) {
+    static uint8_t active_digit(0);
+    uint8_t last = active_digit;
     active_digit++;
     if (active_digit >= 4) {
         active_digit = 0;
     }
-
     BCD(digits[active_digit], dots[active_digit]);
-
-    digitalWrite(Latch, LOW);
+    digitalWrite(Dig[last], OFF);
+    // Disable the BCD Latch for a few microseconds
+    digitalWrite(Latch, HIGH);
     digitalWrite(Dig[active_digit], ON);
-
+    digitalWrite(Latch, LOW);
 }
 
-void setText(String text) {
+
+void display::setText(char* chars) {
+    String text = chars;
     uint8_t d = 0;
     for (uint8_t i = 0; i < text.length() && d < 4; ++i) {
         digits[d] = 10; // 10 - 15: blank
@@ -83,15 +109,14 @@ void setText(String text) {
 }
 
 void display::display(float value, rom::Mode mode, rom::Unit unit) {
-    double number = value / 10.0;
-    char display[8];
-    sprintf(display, "%4.1f", number);
+    char number[6] = "     ";
+    dtostrf(value, 5, 1, number);
 
     PRINT("Display: '");
-    PRINT(display);
+    PRINT(number);
     PRINTLN("'");
 
-    setText(display);
+    setText(number);
 }
 
 void display::onSleep() {
@@ -99,4 +124,5 @@ void display::onSleep() {
     digitalWrite(Dig[1], OFF);
     digitalWrite(Dig[2], OFF);
     digitalWrite(Dig[3], OFF);
+    BCD(10, false);
 }
