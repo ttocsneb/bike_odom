@@ -6,8 +6,8 @@
 
 #include <Arduino.h>
 
-const char OK = 0x06;
-const char BAD = 0x15;
+const char OK = 'G';//0x06;
+const char BAD = 'B';//0x15;
 
 enum Rom {
     BLOCK_TIME = 'b',
@@ -27,7 +27,7 @@ enum Command {
 };
 
 void serial::setup() {
-    Serial.begin(9600);
+    Serial.begin(115200);
 
     PRINTLN("Hello World!");
 }

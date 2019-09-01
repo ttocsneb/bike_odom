@@ -75,7 +75,7 @@ void odom::setup() {
         time_blocks[i] = 0;
     }
 
-    wheel_conversion = (rom::read_int(rom::Diameter) / 1000.0) * PI / num_magnets;
+    wheel_conversion = (rom::read_int(rom::Diameter) / 1000.0) * PI;
 
     sleep_time = rom::read_long(rom::Sleep_Time);
 
@@ -98,6 +98,7 @@ void odom::nextMode() {
         break;
     case rom::ODOM:
         mode = rom::TACHO;
+        break;
     case rom::TACHO:
     default:
         mode = rom::SPEED;
@@ -151,11 +152,11 @@ ISR(TIMER1_COMPA_vect) {
     float display;
     // Calculate the display value
     if (mode == rom::ODOM) {
-        display = distance * wheel_conversion / getUnitConversion();
+        display = distance * wheel_conversion / getUnitConversion() / num_magnets;
     } else {
-        float tacho = sum_blocks() / (average_time / 1000.0);
+        float tacho = sum_blocks() / (average_time / 1000.0) / num_magnets;
         if (mode == rom::TACHO) {
-            display = tacho / num_magnets;
+            display = tacho;
         } else {
             display = tacho * wheel_conversion / getUnitConversion() * 3600;
         }

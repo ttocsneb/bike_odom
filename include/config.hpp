@@ -2,17 +2,17 @@
 #define __CONFIG__
 
 // Import all used headers here
-#include "led/display.hpp"
+#include "custom/display.hpp"
 
 #include <stdint.h>
 // uncomment to enable debug output through serial
 // #define DEBUG
-#define TEST
+// #define TEST
 // #define TEST_DISPLAY
-#define TEST_TEXT
+// #define TEST_TEXT
 
 // The wheel sensor pin is required to be on an INT pin.  on atmega328p: the INT pins are on 2 and 3
-const uint8_t WheelSensorPin = 2;
+#define WHEEL_SENSOR_PIN 2
 
 // These constants are used by the default implementations and used for interrupts
 // They should be connected to PCINT pins.
@@ -26,11 +26,13 @@ const uint8_t WheelSensorPin = 2;
 #define MODE_BUTTON_PIN_SETUP pinMode(MODE_BUTTON_PIN, INPUT_PULLUP)
 #define UNIT_BUTTON_PIN_SETUP pinMode(UNIT_BUTTON_PIN, INPUT_PULLUP)
 #define RESET_BUTTON_PIN_SETUP pinMode(RESET_BUTTON_PIN, INPUT_PULLUP)
+#define WHEEL_SENSOR_SETUP pinMode(WHEEL_SENSOR_PIN, INPUT_PULLUP)
+
 
 // When an interrupt is triggered.
-#define MODE_BUTTON_MODE FALLING
-#define UNIT_BUTTON_MODE FALLING
-#define RESET_BUTTON_MODE FALLING
+#define MODE_BUTTON_MODE RISING
+#define UNIT_BUTTON_MODE RISING
+#define RESET_BUTTON_MODE RISING
 
 // Custom Functions
 // Note: to use a function, you will need to include the header file that

@@ -1,4 +1,4 @@
-#include "led/display.hpp"
+#include "custom/display.hpp"
 #include "config.hpp"
 #include <stdint.h>
 #include <Arduino.h>
@@ -7,10 +7,10 @@
 #define OFF LOW
 
 #define MAX 255
-#define TIMER_SCALE 4
+#define TIMER_SCALE 5
 #define timer_to_scale(x) (x == 1 ? 1 : (x == 2 ? 8 : (x == 3 ? 32 : (x == 4 ? 64 : (x == 5 ? 128 : (x == 6 ? 256 : (x == 7 ? 1024 : 0)))))))
-#define UPDATE_TIME (200*4) // Hz
-const uint8_t Timer_Steps = (F_CPU / timer_to_scale(TIMER_SCALE)) / UPDATE_TIME;
+#define UPDATE_TIME (120*4) // Hz
+const uint16_t Timer_Steps = (F_CPU / timer_to_scale(TIMER_SCALE)) / UPDATE_TIME;
 
 
 const uint8_t A = pA;
@@ -26,15 +26,15 @@ const uint8_t Latch = pLATCH;
 uint8_t digits[4];
 bool dots[4];
 
-void BCD(uint8_t val, bool dp) {
+void BCD(uint8_t val) {
     digitalWrite(A, val & 1);
     digitalWrite(B, (val & 2) != 0);
     digitalWrite(C, (val & 4) != 0);
     digitalWrite(D, (val & 8) != 0);
-    digitalWrite(DP, !dp);
 }
 
 void display::setup() {
+    pinMode(LED_BUILTIN, OUTPUT);
     pinMode(A, OUTPUT);
     pinMode(B, OUTPUT);
     pinMode(C, OUTPUT);
@@ -75,10 +75,11 @@ ISR(TIMER2_COMPA_vect) {
     if (active_digit >= 4) {
         active_digit = 0;
     }
-    BCD(digits[active_digit], dots[active_digit]);
+    BCD(digits[active_digit]);
     digitalWrite(Dig[last], OFF);
     // Disable the BCD Latch for a few microseconds
     digitalWrite(Latch, HIGH);
+    digitalWrite(DP, !dots[active_digit]);
     digitalWrite(Dig[active_digit], ON);
     digitalWrite(Latch, LOW);
 }
@@ -93,15 +94,10 @@ void display::setText(char* chars) {
 
         if (isDigit(text[i])) {
             digits[d] = String(text[i]).toInt();
-
-            // If the next character is a '.' move to the next character,
-            // so the dot can be placed on this digit.
-            if (text[i + 1] == '.') {
-                ++i;
-            }
         }
-        if (text[i] == '.') {
+        if (text[i + 1] == '.') {
             dots[d] = true;
+            ++i;
         }
 
         ++d;
@@ -113,10 +109,19 @@ void display::display(float value, rom::Mode mode, rom::Unit unit) {
     dtostrf(value, 5, 1, number);
 
     PRINT("Display: '");
-    PRINT(number);
+
+    if (mode != rom::TACHO && unit == rom::IMPERIAL) {
+        char text[7] = {number[0], '.', number[1], number[2], number[3], number[4]};
+        
+        PRINT(text);
+        setText(text);
+    } else {
+        PRINT(number);
+        setText(number);
+    }
     PRINTLN("'");
 
-    setText(number);
+    digitalWrite(LED_BUILTIN, mode == rom::TACHO);
 }
 
 void display::onSleep() {
@@ -124,5 +129,7 @@ void display::onSleep() {
     digitalWrite(Dig[1], OFF);
     digitalWrite(Dig[2], OFF);
     digitalWrite(Dig[3], OFF);
-    BCD(10, false);
+    digitalWrite(LED_BUILTIN, LOW);
+    BCD(10);
+    digitalWrite(DP, true);
 }
