@@ -104,6 +104,7 @@ void odom::nextMode() {
         mode = rom::SPEED;
         break;
     }
+    rom::write_bits(rom::Bit_Mode, mode);
 }
 
 void odom::nextUnit() {
@@ -116,6 +117,7 @@ void odom::nextUnit() {
         unit = rom::METRIC;
         break;
     }
+    rom::write_bits(rom::Bit_Unit, unit);
 }
 
 void odom::resetOdom() {
@@ -173,6 +175,7 @@ ISR(TIMER1_COMPA_vect) {
 
     odom::sleep_timer += block_time;
     if (odom::sleep_timer > sleep_time) {
+        rom::write(rom::Distance, distance);
         hardware::sleep();
     }
 }
