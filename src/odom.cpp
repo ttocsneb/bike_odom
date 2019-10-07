@@ -141,6 +141,7 @@ ISR(TIMER1_COMPA_vect) {
     if (distance_timer >= distance_update_time) {
         PRINTLN("Saving Distance to EEPROM");
         rom::write(rom::Distance, distance);
+        distance_timer = 0;
     }
 
 

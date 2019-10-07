@@ -5,8 +5,7 @@
 #include <avr/sleep.h>
 #include <PinChangeInterrupt.h>
 
-#define INT_WHEEL_ROTATE attachInterrupt(digitalPinToInterrupt(WHEEL_SENSOR_PIN), &onWheelRotate, RISING)
-#define INT_WHEEL_WAKE attachInterrupt(digitalPinToInterrupt(WHEEL_SENSOR_PIN), wake, RISING)
+#define INT_WHEEL(x, y) attachInterrupt(digitalPinToInterrupt(WHEEL_SENSOR_PIN), x, y)
 
 void onModePress() {
     if (MODE_BUTTON_FUNCTION()) {
@@ -55,13 +54,13 @@ void hardware::setup() {
       attachPCINT(digitalPinToPCINT(RESET_BUTTON_PIN), onResetPress, RESET_BUTTON_MODE);
     #endif
 
-    INT_WHEEL_ROTATE;
+    INT_WHEEL(&onWheelRotate, RISING);
 }
 
 void wake() {
     sleep_disable();
     detachInterrupt(digitalPinToInterrupt(WHEEL_SENSOR_PIN));
-    INT_WHEEL_ROTATE;
+    INT_WHEEL(&onWheelRotate, RISING);
     odom::setup();
     PRINTLN("Just Woke up");
     #ifdef AFTER_WAKE
@@ -70,14 +69,19 @@ void wake() {
 }
 
 void hardware::sleep() {
+    noInterrupts();
     PRINTLN("Going to sleep");
     #ifdef BEFORE_SLEEP
       BEFORE_SLEEP();
     #endif
-    sleep_enable();
     // Set to wake when the Wheel sensor pin goes low
     detachInterrupt(digitalPinToInterrupt(WHEEL_SENSOR_PIN));
-    INT_WHEEL_WAKE;
+
+    // Start sleeping
+    sleep_enable();
+    INT_WHEEL(&wake, LOW);
+    set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+    interrupts();
     sleep_cpu();
 }
 

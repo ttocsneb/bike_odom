@@ -121,7 +121,7 @@ void display::display(float value, rom::Mode mode, rom::Unit unit) {
     }
     PRINTLN("'");
 
-    digitalWrite(LED_BUILTIN, mode == rom::TACHO);
+    digitalWrite(LED_BUILTIN, mode == rom::ODOM);
 }
 
 void display::onSleep() {
