@@ -137,20 +137,8 @@ float getUnitConversion() {
     return unit == rom::METRIC ? kilometer : mile;
 }
 
-ISR(TIMER1_COMPA_vect) {
-    static uint32_t distance_timer(0);
-    distance_timer += block_time;
-    if (distance_timer >= distance_update_time) {
-        PRINTLN("Saving Distance to EEPROM");
-        rom::write(rom::Distance, distance);
-        distance_timer = 0;
-    }
-
-
+void odom::loop() {
     serial::update();
-
-    // Process the time block
-    distance += odom::time_blocks[odom::active_block];
 
     float display;
     // Calculate the display value
@@ -165,13 +153,26 @@ ISR(TIMER1_COMPA_vect) {
         }
     }
 
+    UPDATE_DISPLAY_FUNCTION(display, mode, unit);
+}
+
+ISR(TIMER1_COMPA_vect) {
+    static uint32_t distance_timer(0);
+    distance_timer += block_time;
+    if (distance_timer >= distance_update_time) {
+        PRINTLN("Saving Distance to EEPROM");
+        rom::write(rom::Distance, distance);
+        distance_timer = 0;
+    }
+
+    // Process the time block
+    distance += odom::time_blocks[odom::active_block];
+
     odom::active_block++;
     if (odom::active_block >= num_blocks) {
         odom::active_block = 0;
     }
     odom::time_blocks[odom::active_block] = 0;
-
-    UPDATE_DISPLAY_FUNCTION(display, mode, unit);
 
     odom::sleep_timer += block_time;
     if (odom::sleep_timer > sleep_time) {

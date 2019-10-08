@@ -14,5 +14,6 @@ namespace odom {
     extern volatile uint32_t sleep_timer;
 
     void setup();
+    void loop();
 }
 #endif
