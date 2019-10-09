@@ -14,25 +14,12 @@
 // The wheel sensor pin is required to be on an INT pin.  on atmega328p: the INT pins are on 2 and 3
 #define WHEEL_SENSOR_PIN 2
 
-// These constants are used by the default implementations and used for interrupts
-// They should be connected to PCINT pins.
-// Comment out a button pin if it is not used
-#define MODE_BUTTON_PIN 8
-#define UNIT_BUTTON_PIN 9
-#define RESET_BUTTON_PIN 10
-
 // Pin Setup.  This is how the pins will be setup, again if you are seting up the pins
 // yourself, or a pin is not in use, comment out the definition
-#define MODE_BUTTON_PIN_SETUP pinMode(MODE_BUTTON_PIN, INPUT_PULLUP)
-#define UNIT_BUTTON_PIN_SETUP pinMode(UNIT_BUTTON_PIN, INPUT_PULLUP)
-#define RESET_BUTTON_PIN_SETUP pinMode(RESET_BUTTON_PIN, INPUT_PULLUP)
 #define WHEEL_SENSOR_SETUP pinMode(WHEEL_SENSOR_PIN, INPUT_PULLUP)
 
-
 // When an interrupt is triggered.
-#define MODE_BUTTON_MODE RISING
-#define UNIT_BUTTON_MODE RISING
-#define RESET_BUTTON_MODE RISING
+#define WHEEL_TRIGGER_MODE FALLING
 
 // Custom Functions
 // Note: to use a function, you will need to include the header file that

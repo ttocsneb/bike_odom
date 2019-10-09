@@ -3,6 +3,14 @@
 
 #include "rom.hpp"
 
+#define MODE_BUTTON_PIN 8
+#define UNIT_BUTTON_PIN 9
+#define RESET_BUTTON_PIN 10
+
+#define MODE_BUTTON_MODE FALLING
+#define UNIT_BUTTON_MODE FALLING
+#define RESET_BUTTON_MODE CHANGE
+
 #define pA 4
 #define pB 5
 #define pC 6
@@ -27,7 +35,7 @@ namespace display {
      * '1.23.4'
      */
     void setText(char* text);
-    void display(float value, rom::Mode mode, rom::Unit unit);
+    void display(float rpm, float speed, float odom, float trip);
     void onSleep();
 }
 

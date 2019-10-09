@@ -1,7 +1,10 @@
 #include "custom/display.hpp"
 #include "config.hpp"
+#include "rom.hpp"
+#include "odom.hpp"
 #include <stdint.h>
 #include <Arduino.h>
+#include <PinChangeInterrupt.h>
 
 #define ON HIGH
 #define OFF LOW
@@ -23,8 +26,78 @@ const uint8_t Dig[4] = {pD0, pD1, pD2, pD3};
 
 const uint8_t Latch = pLATCH;
 
-uint8_t digits[4];
-bool dots[4];
+volatile uint8_t digits[4];
+volatile bool dots[4];
+
+rom::Mode mode;
+rom::Unit unit;
+
+bool isPressed(uint32_t &lastPress, uint16_t pressTime) {
+  uint32_t time = millis();
+  bool ret = time - lastPress > pressTime;
+  if (ret) {
+    lastPress = time;
+  }
+  return ret;
+}
+
+void onMode() {
+    static uint32_t lastPress(0);
+    if (isPressed(lastPress, 250)) {
+        mode = rom::TACHO;
+    }
+}
+
+void onUnit() {
+    static uint32_t lastPress(0);
+    // static uint32_t lastDown(0);
+
+    if (isPressed(lastPress, 250)) {
+        if (mode == rom::TRIP) {
+            mode = rom::ODOM;
+        } else {
+            mode = rom::TRIP;
+        }
+    }
+
+    // // If the button was just released
+    // if (digitalRead(UNIT_BUTTON_PIN)) {
+    //     if (isPressed(lastPress, 100)) {
+    //         // Long press: Odometer
+    //         // Short press: Trip
+    //         if (millis() - lastDown > 500) {
+    //             mode = rom::ODOM;
+    //         } else {
+    //             mode = rom::TRIP;
+    //         }
+    //     }
+    // } else {
+    //     // record the start of a press
+    //     lastDown = millis();
+    // }
+}
+
+uint32_t resetTimer;
+bool resetMode = false;
+
+void onReset() {
+    static uint32_t lastPress(0);
+
+    // If the button was just released
+    if (digitalRead(UNIT_BUTTON_PIN)) {
+        if (isPressed(lastPress, 250) && millis() - resetTimer > 500) {
+            // Long press: Reset trip
+            odom::resetTrip();
+        }
+        resetMode = false;
+        digitalWrite(LED_BUILTIN, LOW);
+    } else {
+        // record the start of a press
+        resetTimer = millis();
+        resetMode = true;
+        digitalWrite(LED_BUILTIN, HIGH);
+    }
+}
 
 void BCD(uint8_t val) {
     digitalWrite(A, val & 1);
@@ -34,6 +107,14 @@ void BCD(uint8_t val) {
 }
 
 void display::setup() {
+    pinMode(MODE_BUTTON_MODE, INPUT_PULLUP);
+    pinMode(UNIT_BUTTON_PIN, INPUT_PULLUP);
+    pinMode(RESET_BUTTON_PIN, INPUT_PULLUP);
+
+    attachPCINT(digitalPinToPCINT(MODE_BUTTON_PIN), onMode, MODE_BUTTON_MODE);
+    attachPCINT(digitalPinToPCINT(UNIT_BUTTON_PIN), onUnit, UNIT_BUTTON_MODE);
+    attachPCINT(digitalPinToPCINT(RESET_BUTTON_PIN), onReset, RESET_BUTTON_MODE);
+
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(A, OUTPUT);
     pinMode(B, OUTPUT);
@@ -66,6 +147,8 @@ void display::setup() {
     // Enable Timer2 to compare to OCR2A
     TIMSK2 = 1 << OCIE2A;
 
+    mode = (rom::Mode)rom::read_bits(rom::Bit_Mode);
+    unit = (rom::Unit)rom::read_bits(rom::Bit_Unit);
 }
 
 ISR(TIMER2_COMPA_vect) {
@@ -104,13 +187,31 @@ void display::setText(char* chars) {
     }
 }
 
-void display::display(float value, rom::Mode mode, rom::Unit unit) {
+void display::display(float rpm, float speed, float odom, float trip) {
+
+    float value;
+
+    switch (mode) {
+    case rom::TACHO:
+        value = rpm;
+        break;
+    case rom::TRIP:
+        value = trip;
+        break;
+    case rom::ODOM:
+        value = odom;
+        break;
+    case rom::SPEED:
+    default:
+        value = speed;
+    }
+
     char number[6] = "     ";
     dtostrf(value, 5, 1, number);
 
     PRINT("Display: '");
 
-    if (mode != rom::TACHO && unit == rom::IMPERIAL) {
+    if (mode == rom::TRIP) {
         char text[7] = {number[0], '.', number[1], number[2], number[3], number[4]};
         
         PRINT(text);
@@ -121,10 +222,12 @@ void display::display(float value, rom::Mode mode, rom::Unit unit) {
     }
     PRINTLN("'");
 
-    digitalWrite(LED_BUILTIN, mode == rom::ODOM);
+    // digitalWrite(LED_BUILTIN, mode == rom::ODOM);
 }
 
 void display::onSleep() {
+    rom::write_bits(rom::Bit_Mode, mode);
+
     digitalWrite(Dig[0], OFF);
     digitalWrite(Dig[1], OFF);
     digitalWrite(Dig[2], OFF);

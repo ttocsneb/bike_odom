@@ -14,6 +14,7 @@ namespace rom {
     extern const uint8_t Sleep_Time;
     extern const uint8_t Distance;
     extern const uint8_t DistanceUpdateTime;
+    extern const uint8_t Trip;
 
     extern const uint8_t Bit_Mode;
     extern const uint8_t Bit_Unit;
@@ -29,7 +30,7 @@ namespace rom {
     void write(uint16_t address, uint32_t val);
     void write_bits(uint8_t bit, uint8_t val);
 
-    enum Mode {TACHO, SPEED, ODOM};
+    enum Mode {TACHO, SPEED, ODOM, TRIP};
     enum Unit {METRIC, IMPERIAL};
 }
 

@@ -10,11 +10,12 @@
 #define MAX 65535
 #define TIMER_SCALE 4
 #define timer_to_scale(x) (x == 1 ? 1 : (x == 2 ? 8 : (x == 3 ? 64 : (x == 4 ? 256 : (x == 5 ? 1024 : 0)))))
-#define TIMER_STEP_MS (F_CPU_M / timer_to_scale(TIMER_SCALE))
+const uint16_t TIMER_STEP_MS = (F_CPU_M / timer_to_scale(TIMER_SCALE));
 
-uint32_t distance;
-uint16_t block_time;
-uint16_t average_time;
+volatile uint32_t distance;
+volatile uint32_t trip_distance;
+volatile uint16_t block_time;
+volatile uint16_t average_time;
 
 uint8_t num_blocks;
 volatile uint8_t* odom::time_blocks = NULL;
@@ -26,9 +27,6 @@ float wheel_conversion;
 
 uint32_t sleep_time;
 uint32_t distance_update_time;
-
-rom::Mode mode;
-rom::Unit unit;
 
 const float mile = 1609.344;
 const float kilometer = 1000;
@@ -81,8 +79,6 @@ void odom::setup() {
 
     active_block = 0;
 
-    mode = rom::Mode(rom::read_bits(rom::Bit_Mode));
-    unit = rom::Unit(rom::read_bits(rom::Bit_Unit));
 
     serial::setup();
     hardware::setup();
@@ -90,39 +86,9 @@ void odom::setup() {
     interrupts();
 }
 
-void odom::nextMode() {
-    switch (mode)
-    {
-    case rom::SPEED:
-        mode = rom::ODOM;
-        break;
-    case rom::ODOM:
-        mode = rom::TACHO;
-        break;
-    case rom::TACHO:
-    default:
-        mode = rom::SPEED;
-        break;
-    }
-    rom::write_bits(rom::Bit_Mode, mode);
-}
-
-void odom::nextUnit() {
-    switch (unit) {
-    case rom::METRIC:
-        unit = rom::IMPERIAL;
-        break;
-    case rom::IMPERIAL:
-    default:
-        unit = rom::METRIC;
-        break;
-    }
-    rom::write_bits(rom::Bit_Unit, unit);
-}
-
-void odom::resetOdom() {
-    distance = 0;
-    rom::write(rom::Distance, 0);
+void odom::resetTrip() {
+    trip_distance = 0;
+    rom::write(rom::Trip, 0);
 }
 
 uint16_t sum_blocks() {
@@ -133,40 +99,31 @@ uint16_t sum_blocks() {
     return total;
 }
 
-float getUnitConversion() {
-    return unit == rom::METRIC ? kilometer : mile;
-}
-
 void odom::loop() {
     serial::update();
 
-    float display;
-    // Calculate the display value
-    if (mode == rom::ODOM) {
-        display = distance * wheel_conversion / getUnitConversion() / num_magnets;
-    } else {
-        float tacho = sum_blocks() / (average_time / 1000.0) / num_magnets;
-        if (mode == rom::TACHO) {
-            display = tacho;
-        } else {
-            display = tacho * wheel_conversion / getUnitConversion() * 3600;
-        }
-    }
+    float odom = distance * wheel_conversion / 1000.0 / num_magnets;
+    float trip = trip_distance * wheel_conversion / 1000.0 / num_magnets;
+    float tacho = sum_blocks() / (average_time / 1000.0) / num_magnets;
+    float speed = tacho * wheel_conversion / 1000.0 * 3600;
 
-    UPDATE_DISPLAY_FUNCTION(display, mode, unit);
+    UPDATE_DISPLAY_FUNCTION(tacho, speed, odom, trip);
 }
 
 ISR(TIMER1_COMPA_vect) {
     static uint32_t distance_timer(0);
     distance_timer += block_time;
-    if (distance_timer >= distance_update_time) {
-        PRINTLN("Saving Distance to EEPROM");
-        rom::write(rom::Distance, distance);
-        distance_timer = 0;
-    }
 
     // Process the time block
     distance += odom::time_blocks[odom::active_block];
+    trip_distance += odom::time_blocks[odom::active_block];
+
+    if (distance_timer >= distance_update_time) {
+        PRINTLN("Saving Distance to EEPROM");
+        rom::write(rom::Distance, distance);
+        rom::write(rom::Trip, trip_distance);
+        distance_timer = 0;
+    }
 
     odom::active_block++;
     if (odom::active_block >= num_blocks) {
@@ -177,6 +134,7 @@ ISR(TIMER1_COMPA_vect) {
     odom::sleep_timer += block_time;
     if (odom::sleep_timer > sleep_time) {
         rom::write(rom::Distance, distance);
+        rom::write(rom::Trip, trip_distance);
         hardware::sleep();
     }
 }

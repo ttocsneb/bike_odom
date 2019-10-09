@@ -13,6 +13,7 @@ const uint8_t Bits = 0x05;
 const uint8_t rom::Distance = 0x06;
 const uint8_t rom::DistanceUpdateTime = 0x07;
 const uint8_t New_Rom_Checker = 0x08;
+const uint8_t rom::Trip = 0x09;
 
 const uint8_t rom::Bit_Mode = 0;
 const uint8_t rom::Bit_Unit = 1;
@@ -29,6 +30,7 @@ const uint32_t Distance_Default = 0;
 const uint32_t Distance_Update_Time_Default = 300000;
 const uint8_t Bit_Mode_Default = 0;
 const uint8_t Bit_Unit_Default = 0;
+const uint32_t Trip_Default = 0;
 
 void rom::setup() {
     EEPROM.begin();
@@ -44,6 +46,7 @@ void rom::setup() {
         write(DistanceUpdateTime, Distance_Update_Time_Default);
         write_bits(Bit_Mode, Bit_Mode_Default);
         write_bits(Bit_Unit, Bit_Unit_Default);
+        write(Trip, Trip_Default);
 
         write(New_Rom_Checker, New_Rom_Default);
     }
@@ -88,6 +91,7 @@ void rom::write_bits(uint8_t bit, uint8_t val) {
     uint32_t bits = read_long(Bits);
     // Clear the bits we will write to
     bits &= ~((0xffffffff >> (32 - BitSize[bit])) << BitLocation[bit]);
+    // Set the bits
     bits |= (val & (0xffffffff >> (32 - BitSize[bit]))) << BitLocation[bit];
     write(Bits, bits);
 }

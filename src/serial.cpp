@@ -16,7 +16,8 @@ enum Rom {
     DIAMETER = 'd',
     SLEEP_TIME = 's',
     DISTANCE = 'D',
-    DISTANCE_UPDATE_TIME = 'u'
+    DISTANCE_UPDATE_TIME = 'u',
+    TRIP = 'o'
 };
 
 enum Command {
@@ -49,7 +50,7 @@ void serial::update() {
 
         if (c == WRITE || c == READ) {
 
-            if (String("bamdsDu").indexOf(data[1]) == -1) {
+            if (String("bamdsDuo").indexOf(data[1]) == -1) {
                 status(BAD);
                 continue;
             }
@@ -77,6 +78,9 @@ void serial::update() {
                 break;
             case DISTANCE_UPDATE_TIME:
                 address = rom::DistanceUpdateTime;
+                break;
+            case TRIP:
+                address = rom::Trip;
                 break;
             }
 

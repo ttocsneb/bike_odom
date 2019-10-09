@@ -5,9 +5,8 @@
 #include "rom.hpp"
 
 namespace odom {
-    void nextMode();
-    void nextUnit();
-    void resetOdom();
+
+    void resetTrip();
 
     extern volatile uint8_t* time_blocks;
     extern volatile uint8_t active_block;
