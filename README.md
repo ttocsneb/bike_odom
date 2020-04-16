@@ -1,6 +1,6 @@
 # Bike Odometer
 
-[![Build Status](https://travis-ci.com/ttocsneb/bike_odom.svg?token=8LjpCSuHky9LYSfsZNxq&branch=master)](https://travis-ci.com/ttocsneb/bike_odom)
+[![Build Status](https://github.drone.home.benscraft.info/api/badges/ttocsneb/bike_odom/status.svg)](https://github.drone.home.benscraft.info/ttocsneb/bike_odom)
 
 A modular bke odometer that will get and display the speed and distance of the
 bike. It will also have the ability to control other devices such as a
